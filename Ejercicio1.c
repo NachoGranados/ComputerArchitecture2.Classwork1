@@ -89,9 +89,6 @@ int main() {
 
 	pthread_join(thread1, NULL);
 	pthread_join(thread2, NULL); 
-
-	printf("Thread 1 returns: %d\n", write);
-	printf("Thread 2 returns: %d\n", read);
 		
 	return 0;
      
