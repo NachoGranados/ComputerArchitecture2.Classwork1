@@ -1,7 +1,8 @@
 // libraries
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
-#include <time.h>
+#include <unistd.h>
 
 // constants definition
 #define MIN 0
@@ -12,8 +13,8 @@
 
 // this function generates 'size' 8bit random numbers between 'min' and
 // 'max' range and stores them in an array
-void writeRandomNumbers(int *randomArray, int min, int max, int size)
-{
+void writeRandomNumbers(int *randomArray, int min, int max, int size) {
+
     int i;
     
     for(i = 0; i < size; i++) {  	
@@ -47,13 +48,16 @@ void readRandomNumbers(int *randomArray, int size, int constant) {
 }
 
 // this functions belogns to thread 1
-void *thread1Function(int *randomArray) {
+void *thread1Function(void *voidRandomArray) {
+
+    int* randomArray;
+    randomArray = (int*)voidRandomArray;
 	
     while(1) {
     			
 		writeRandomNumbers(randomArray, MIN, MAX, SIZE);
-		                      
-		printf("CICLO \n\n");
+    		                      
+		printf("********** \n\n");
 		
 		usleep(10000);
         
@@ -62,13 +66,16 @@ void *thread1Function(int *randomArray) {
 }
 
 // this functions belogns to thread 2
-void *thread2Function(int *randomArray) {
+void *thread2Function(void *voidRandomArray) {
+
+    int* randomArray;
+    randomArray = (int*)voidRandomArray;
 	
     while(1) {
     				
 		readRandomNumbers(randomArray, SIZE, CONSTANT);
 		                      
-		printf("CICLO \n\n");
+		printf("********** \n\n");
 		
 		usleep(10000);
         
@@ -93,4 +100,3 @@ int main() {
 	return 0;
      
 }
-
