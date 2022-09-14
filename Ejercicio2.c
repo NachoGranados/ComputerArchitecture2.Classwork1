@@ -1,5 +1,6 @@
 // libraries
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 
 // global variables
@@ -39,4 +40,3 @@ int main() {
 	return 0;
      
 }
-
